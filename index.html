@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChartUs - Where Creators Become Investments</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="border-b bg-white/95 backdrop-blur">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <i data-lucide="bar-chart-3" class="h-8 w-8 text-purple-600"></i>
+                <span class="text-2xl font-bold gradient-text">ChartUs</span>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="#home" class="text-gray-600 hover:text-purple-600 transition-colors">Home</a>
+                <a href="#features" class="text-gray-600 hover:text-purple-600 transition-colors">Features</a>
+                <a href="#trading" class="text-gray-600 hover:text-purple-600 transition-colors">Trading</a>
+                <a href="#creators" class="text-gray-600 hover:text-purple-600 transition-colors">Creators</a>
+            </div>
+
+            <div class="flex items-center space-x-3">
+                <button class="px-4 py-2 border border-purple-600 text-purple-600 rounded-lg hover:bg-purple-50 transition-colors">
+                    Login
+                </button>
+                <button class="px-4 py-2 gradient-bg text-white rounded-lg hover:opacity-90 transition-opacity">
+                    Sign Up
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-purple-50 to-blue-50 py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6">
+                <span class="gradient-text">Where Creators</span>
+                <br>
+                <span class="text-gray-900">Become Investments</span>
+            </h1>
+            
+            <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+                Join the revolutionary creator economy platform where every creator gets their own trading chart and Base wallet. 
+                Invest in creators you believe in and earn as they grow.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+                <button class="gradient-bg text-white px-8 py-3 rounded-lg text-lg font-semibold hover:opacity-90 transition-opacity flex items-center justify-center">
+                    <i data-lucide="wallet" class="mr-2 h-5 w-5"></i>
+                    Get Your Base Wallet & Chart
+                </button>
+                <button class="border-2 border-purple-600 text-purple-600 px-8 py-3 rounded-lg text-lg font-semibold hover:bg-purple-50 transition-colors flex items-center justify-center">
+                    <i data-lucide="trending-up" class="mr-2 h-5 w-5"></i>
+                    Start Trading Creators
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                <div class="text-center">
+                    <div class="bg-purple-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                        <i data-lucide="wallet" class="h-8 w-8 text-purple-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Instant Base Wallet</h3>
+                    <p class="text-gray-600">Get your own crypto wallet with private keys automatically upon registration</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="bg-blue-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                        <i data-lucide="bar-chart-3" class="h-8 w-8 text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Auto Trading Chart</h3>
+                    <p class="text-gray-600">Every creator gets their own trading chart with real-time price discovery</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="bg-green-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                        <i data-lucide="dollar-sign" class="h-8 w-8 text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Creator Revenue</h3>
+                    <p class="text-gray-600">Creators earn 2.5% from every trade on their tokens - much more than traditional platforms</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Market Cap Section -->
+    <section class="gradient-bg text-white py-16">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold mb-2">Global Creator Market Cap</h2>
+                <p class="text-purple-100">Total value of all creator investments on ChartUs</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white/10 border border-white/20 rounded-lg p-6 text-center">
+                    <i data-lucide="dollar-sign" class="h-8 w-8 mx-auto mb-2 text-green-400"></i>
+                    <div class="text-2xl font-bold" id="totalMarketCap">$0</div>
+                    <div class="text-sm text-purple-100">Total Market Cap</div>
+                </div>
+                
+                <div class="bg-white/10 border border-white/20 rounded-lg p-6 text-center">
+                    <i data-lucide="trending-up" class="h-8 w-8 mx-auto mb-2 text-blue-400"></i>
+                    <div class="text-2xl font-bold" id="totalVolume">$0</div>
+                    <div class="text-sm text-purple-100">24h Volume</div>
+                </div>
+                
+                <div class="bg-white/10 border border-white/20 rounded-lg p-6 text-center">
+                    <i data-lucide="users" class="h-8 w-8 mx-auto mb-2 text-yellow-400"></i>
+                    <div class="text-2xl font-bold" id="totalCreators">0</div>
+                    <div class="text-sm text-purple-100">Active Creators</div>
+                </div>
+                
+                <div class="bg-white/10 border border-white/20 rounded-lg p-6 text-center">
+                    <i data-lucide="bar-chart-3" class="h-8 w-8 mx-auto mb-2 text-purple-400"></i>
+                    <div class="text-2xl font-bold" id="totalTrades">0</div>
+                    <div class="text-sm text-purple-100">Total Trades</div>
+                </div>
+            </div>
+
+            <div class="bg-white/10 border border-white/20 rounded-lg p-6">
+                <h3 class="text-xl font-semibold mb-4 text-white">24 Hour Market Cap Trend</h3>
+                <canvas id="marketCapChart" width="400" height="200"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Section -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Join the Creator Economy Revolution</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Create your account now and get instant access to your Base wallet, trading chart, and creator token. 
+                    Start earning from day one with our revolutionary 2.5% revenue sharing model.
+                </p>
+            </div>
+            
+            <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-8">
+                <h3 class="text-2xl font-bold mb-2">Create Your ChartUs Account</h3>
+                <p class="text-gray-600 mb-6">Get your Base wallet, trading chart, and creator token instantly</p>
+                
+                <form id="registrationForm" class="space-y-6">
+                    <div id="successMessage" class="hidden bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg">
+                        Account created successfully! Your Base wallet and trading chart are ready.
+                    </div>
+                    
+                    <div id="errorMessage" class="hidden bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-lg">
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label for="username" class="block text-sm font-medium text-gray-700 mb-1">Username</label>
+                            <input type="text" id="username" name="username" required 
+                                   class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                            <input type="email" id="email" name="email" required 
+                                   class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="displayName" class="block text-sm font-medium text-gray-700 mb-1">Display Name</label>
+                        <input type="text" id="displayName" name="displayName" 
+                               placeholder="How you want to appear to investors"
+                               class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                    </div>
+
+                    <div>
+                        <label for="bio" class="block text-sm font-medium text-gray-700 mb-1">Bio</label>
+                        <input type="text" id="bio" name="bio" 
+                               placeholder="Tell investors about yourself"
+                               class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                            <input type="password" id="password" name="password" required 
+                                   class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                        </div>
+                        <div>
+                            <label for="confirmPassword" class="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
+                            <input type="password" id="confirmPassword" name="confirmPassword" required 
+                                   class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                        </div>
+                    </div>
+
+                    <button type="submit" id="submitBtn" 
+                            class="w-full gradient-bg text-white py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity flex items-center justify-center">
+                        <i data-lucide="wallet" class="mr-2 h-4 w-4"></i>
+                        Create Account & Get Base Wallet
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <div class="flex items-center justify-center space-x-2 mb-4">
+                    <i data-lucide="bar-chart-3" class="h-8 w-8 text-purple-400"></i>
+                    <span class="text-2xl font-bold">ChartUs</span>
+                </div>
+                <p class="text-gray-400 mb-4">Where Creators Become Investments</p>
+                <p class="text-sm text-gray-500">© 2024 ChartUs. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Market data simulation
+        let marketData = {
+            totalMarketCap: 0,
+            totalVolume: 0,
+            totalCreators: 0,
+            totalTrades: 0
+        };
+
+        // Update market data display
+        function updateMarketData() {
+            document.getElementById('totalMarketCap').textContent = `$${marketData.totalMarketCap.toLocaleString()}`;
+            document.getElementById('totalVolume').textContent = `$${marketData.totalVolume.toLocaleString()}`;
+            document.getElementById('totalCreators').textContent = marketData.totalCreators.toLocaleString();
+            document.getElementById('totalTrades').textContent = marketData.totalTrades.toLocaleString();
+        }
+
+        // Initialize chart
+        const ctx = document.getElementById('marketCapChart').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00'],
+                datasets: [{
+                    label: 'Market Cap',
+                    data: [0, 0, 0, 0, 0, 0],
+                    borderColor: '#60a5fa',
+                    backgroundColor: 'rgba(96, 165, 250, 0.1)',
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        },
+                        ticks: {
+                            color: 'rgba(255, 255, 255, 0.7)'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        },
+                        ticks: {
+                            color: 'rgba(255, 255, 255, 0.7)'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Registration form handling
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData);
+            
+            // Hide previous messages
+            document.getElementById('successMessage').classList.add('hidden');
+            document.getElementById('errorMessage').classList.add('hidden');
+            
+            // Validate passwords match
+            if (data.password !== data.confirmPassword) {
+                document.getElementById('errorMessage').textContent = 'Passwords do not match';
+                document.getElementById('errorMessage').classList.remove('hidden');
+                return;
+            }
+            
+            // Simulate account creation
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.innerHTML = '<div class="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>Creating Account & Wallet...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                // Simulate successful registration
+                document.getElementById('successMessage').classList.remove('hidden');
+                
+                // Update market data to reflect new user
+                marketData.totalCreators += 1;
+                marketData.totalMarketCap += 1000; // Base market cap for new creator
+                updateMarketData();
+                
+                // Update chart
+                chart.data.datasets[0].data = chart.data.datasets[0].data.map(() => marketData.totalMarketCap);
+                chart.update();
+                
+                // Reset form
+                e.target.reset();
+                submitBtn.innerHTML = '<i data-lucide="wallet" class="mr-2 h-4 w-4"></i>Create Account & Get Base Wallet';
+                submitBtn.disabled = false;
+                lucide.createIcons();
+            }, 2000);
+        });
+
+        // Initialize display
+        updateMarketData();
+    </script>
+</body>
+</html>
+
